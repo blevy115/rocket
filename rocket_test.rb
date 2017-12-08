@@ -50,10 +50,20 @@ class RocketTest < Minitest::Test
     @rocket.lift_off
     result = @rocket.land
     assert result
+    refute @rocket.flying?
   end
 
+  def test_status_if_landing
+    result = @rocket.status
+    expected = "Rocket #{@rocket.name} is ready for lift off!"
+    assert_equal result, expected
+  end
 
-
-
+  def test_status_if_flying
+    @rocket.lift_off
+    result = @rocket.status
+    expected = "Rocket #{@rocket.name} is flying through the sky!"
+    assert_equal result, expected
+  end
 
 end
